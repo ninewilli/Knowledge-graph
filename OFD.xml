@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ofd:OFD Version="1.0" DocType="OFD" xmlns:ofd="http://www.ofdspec.org/2016">
+  <ofd:DocBody>
+    <ofd:DocInfo>
+      <ofd:DocID>e003dd2212d44e40b6225fd92663fda2</ofd:DocID>
+      <ofd:Author>
+      </ofd:Author>
+      <ofd:CreationDate>3/7/2023 4:11:49 PM</ofd:CreationDate>
+      <ofd:Creator>易转换 (http://www.easeconvert.com)</ofd:Creator>
+      <ofd:Keywords>
+        <ofd:Keyword>
+        </ofd:Keyword>
+      </ofd:Keywords>
+      <ofd:Subject>
+      </ofd:Subject>
+      <ofd:ModDate>1/1/0001 12:00:00 AM</ofd:ModDate>
+      <ofd:Title>
+      </ofd:Title>
+    </ofd:DocInfo>
+    <ofd:DocRoot>Doc_0/Document.xml</ofd:DocRoot>
+  </ofd:DocBody>
+</ofd:OFD>

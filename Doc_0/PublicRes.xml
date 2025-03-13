@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ofd:Res BaseLoc="Res" xmlns:ofd="http://www.ofdspec.org/2016">
+  <ofd:Fonts>
+    <ofd:Font FontName="LNUHNF+SimSun-LNUHNF+SimSun-0" FamilyName="LNUHNF+SimSun-LNUHNF+SimSun-0" ID="8">
+      <ofd:FontFile>font_0.ttf</ofd:FontFile>
+    </ofd:Font>
+  </ofd:Fonts>
+</ofd:Res>
