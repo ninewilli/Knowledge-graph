@@ -12,7 +12,7 @@ if torch.cuda.is_available():
 else:
     device = torch.device("cpu")
 
-with open("train1.json",encoding='utf-8') as inputData:
+with open("part/train1.json",encoding='utf-8') as inputData:
     for line in inputData:
         try:
             Data.append(json.loads(line.rstrip(';\n')))
@@ -20,7 +20,7 @@ with open("train1.json",encoding='utf-8') as inputData:
             print ("Skipping invalid line {0}".format(repr(line)))
 
 Test_data = []
-with open("valid1.json",encoding='utf-8') as inputData:
+with open("part/valid1.json",encoding='utf-8') as inputData:
     for line in inputData:
         try:
             Test_data.append(json.loads(line.rstrip(';\n')))

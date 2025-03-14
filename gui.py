@@ -1,52 +1,43 @@
-import datetime
-import tkinter
-from  tkinter import *
-import json
-import random
-import numpy as np
-import math
-import torch
-import time,threading
-import ttkbootstrap as ttk
-from ttkbootstrap.constants import *
-from LSTM import LSTM_CRF
-import bertBILSTM
-import tkinter.messagebox
-from LSTM import prepare_sequence
-import os
-import py
+# Standard library imports
 import codecs
-import sys
-import pandas as pd
-import numpy as np
-from collections import deque
-import pdb
 import collections
-from torch.autograd import Variable
-from BiLSTM_ATT import BiLSTM_ATT
-import ttkbootstrap as ttk
-from ttkbootstrap.constants import *
-import os
-from transformers import BertTokenizer
-import torch
-from transformers import AutoTokenizer, AutoModelForTokenClassification
-import time
 import datetime
-from tqdm import tqdm
-import torch
-import torch.optim as optim
-from torch.utils.data import DataLoader
-from sklearn import metrics
-from itertools import chain
-from transformers import BertForTokenClassification, AdamW, BertConfig
-import os
 import json
-import pickle
-from transformers import BertModel, AdamW, BertTokenizer
+import math
+import os
+import random
+import sys
+import threading
+import time
+from collections import deque
+from itertools import chain
 
+# Third-party imports
+import numpy as np
+import pandas as pd
+import pdb
 import torch
 import torch.nn as nn
-from torch.utils.data import Dataset
+import torch.optim as optim
+from sklearn import metrics
+from torch.autograd import Variable
+from torch.utils.data import DataLoader, Dataset
+from tqdm import tqdm
+from transformers import (AdamW, AutoModelForTokenClassification, AutoTokenizer,
+                         BertConfig, BertForTokenClassification, BertModel,
+                         BertTokenizer)
+
+# GUI imports
+import tkinter
+from tkinter import *
+import ttkbootstrap as ttk
+from ttkbootstrap.constants import *
+
+# Local imports
+import part.py as py
+from part.BiLSTM_ATT import BiLSTM_ATT
+from part.LSTM import LSTM_CRF, prepare_sequence
+import part.bertBILSTM as bertBILSTM
 
 
 window = ttk.Window()
@@ -193,7 +184,7 @@ else:
 
 word_idx = []
 relation_data = []
-with open("testt.json",encoding='utf-8') as inputData:
+with open("part/testt.json",encoding='utf-8') as inputData:
     for line in inputData:
         try:
             word_idx.append(json.loads(line.rstrip(';\n')))
@@ -201,7 +192,7 @@ with open("testt.json",encoding='utf-8') as inputData:
             print ("Skipping invalid line {0}".format(repr(line)))
 word_to_ix = word_idx[0]
 
-with open("taget_main.json",encoding='utf-8') as inputData:
+with open("part/taget_main.json",encoding='utf-8') as inputData:
     for line in inputData:
         try:
             Data.append(json.loads(line.rstrip(';\n')))
@@ -209,7 +200,7 @@ with open("taget_main.json",encoding='utf-8') as inputData:
             print ("Skipping invalid line {0}".format(repr(line)))
 data = Data[0]
 
-with open("target_relation.json",encoding='utf-8') as inputData:
+with open("part/target_relation.json",encoding='utf-8') as inputData:
     for line in inputData:
         try:
             relation_data.append(json.loads(line.rstrip(';\n')))
