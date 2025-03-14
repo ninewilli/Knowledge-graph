@@ -237,8 +237,8 @@ def panduan():
     e = tkinter.Entry(window,width=115)
     e.pack()
     k.pack()
-    k.place(relx=0.25, rely=0.05)
-    e.place(relx=0.25, rely=0.1)
+    k.place(relx=0.25, rely=0.15)
+    e.place(relx=0.25, rely=0.2)
     def insert_point():
         var = e.get()
         sentence_in = prepare_sequence(var, word_to_ix).to(device)
@@ -270,22 +270,22 @@ def panduan():
 
     b = tkinter.Button(window, text="关系抽取", width=15, height=2,font='华文新魏',command=insert_point)
     b.pack()
-    b.place(relx=0.25, rely=0.15)
+    b.place(relx=0.25, rely=0.25)
     b2 = tkinter.Button(window, text="重新输入", width=15, height=2,font='华文新魏',command=insert_end)
     b2.pack()
-    b2.place(relx=0.25, rely=0.24)
+    b2.place(relx=0.25, rely=0.34)
     t1 = tkinter.Text(window, height=8)
     k1 = Label(window,text='主体',font='华文新魏')
     t1.pack()
     k1.pack()
-    k1.place(relx=0.25, rely=0.33)
-    t1.place(relx=0.25, rely=0.38)
+    k1.place(relx=0.25, rely=0.43)
+    t1.place(relx=0.25, rely=0.48)
     t2 = tkinter.Text(window, height=8)
     k2 = Label(window,text='客体',font='华文新魏')
     t2.pack()
     k2.pack()
-    t2.place(relx=0.25, rely=0.63)
-    k2.place(relx=0.25, rely=0.58)
+    t2.place(relx=0.25, rely=0.73)
+    k2.place(relx=0.25, rely=0.68)
 
 def tianjia():
     tianchong()
@@ -301,12 +301,12 @@ def tianjia():
     e3 = tkinter.Entry(window,width=55)
     e3.pack()
     k3.pack()
-    e1.place(relx=0.35, rely=0.1)
-    e2.place(relx=0.35, rely=0.2)
-    e3.place(relx=0.35, rely=0.3)
-    k1.place(relx=0.35, rely=0.05)
-    k2.place(relx=0.35, rely=0.15)
-    k3.place(relx=0.35, rely=0.25)
+    e1.place(relx=0.35, rely=0.2)
+    e2.place(relx=0.35, rely=0.3)
+    e3.place(relx=0.35, rely=0.4)
+    k1.place(relx=0.35, rely=0.15)
+    k2.place(relx=0.35, rely=0.25)
+    k3.place(relx=0.35, rely=0.35)
     def insert_related():
         test_main = e1.get()
         test_obj = e2.get()
@@ -867,8 +867,8 @@ def tianjia_d():
     e1 = tkinter.Entry(window, width=55)
     e1.pack()
     k1.pack()
-    e1.place(relx=0.35, rely=0.1)
-    k1.place(relx=0.35, rely=0.05)
+    e1.place(relx=0.35, rely=0.2)
+    k1.place(relx=0.35, rely=0.15)
     def insert_end():
         totle_relation = []
         def relation_insert(test_main,test_obj,test_relat):
@@ -1100,30 +1100,46 @@ def tianjia_d():
 
     b = tkinter.Button(window, text="关系抽取", width=15, height=2,font='华文新魏',command=insert_end)
     b.pack()
-    b.place(relx=0.35, rely=0.15)
+    b.place(relx=0.35, rely=0.25)
+
 
 def relation_rely():
     tianchong()
-    k = Label(window, text='输入句子', font='华文新魏')
-    k1 = Label(window, text='输入主体', font='华文新魏')
-    k2 = Label(window, text='输入客体', font='华文新魏')
-    e = tkinter.Entry(window, width=115)
-    e1 = tkinter.Entry(window, width=35)
-    e2 = tkinter.Entry(window, width=35)
-    e.pack()
-    k.pack()
-    k1.place(relx=0.25, rely=0.05)
-    k2.place(relx=0.25, rely=0.15)
-    k.place(relx=0.25, rely=0.25)
-    e.place(relx=0.25, rely=0.3)
-    e1.place(relx=0.25, rely=0.1)
-    e2.place(relx=0.25, rely=0.2)
-    t2 = tkinter.Text(window, height=1)
-    k2 = Label(window, text='关系', font='华文新魏')
-    t2.pack()
-    k2.pack()
-    t2.place(relx=0.25, rely=0.59)
-    k2.place(relx=0.25, rely=0.54)
+
+    # Create labels with consistent styling
+    sentence_label = Label(window, text='输入句子', font=('华文新魏', 12))
+    subject_label = Label(window, text='输入主体', font=('华文新魏', 12))
+    object_label = Label(window, text='输入客体', font=('华文新魏', 12))
+    relation_label = Label(window, text='关系', font=('华文新魏', 12))
+
+    # Create entry fields with consistent styling
+    sentence_entry = Entry(window, width=115, font=('Arial', 10))
+    subject_entry = Entry(window, width=35, font=('Arial', 10))
+    object_entry = Entry(window, width=35, font=('Arial', 10))
+
+    # Create text widget
+    relation_text = Text(window, height=1, font=('Arial', 10))
+
+    # Layout components with cleaner positioning
+    # Using a standard padding and alignment
+    x_start = 0.25
+    y_spacing = 0.1
+
+    # Place subjects section
+    subject_label.place(relx=x_start, rely=0.15)
+    subject_entry.place(relx=x_start, rely=0.2)
+
+    # Place objects section
+    object_label.place(relx=x_start, rely=0.25)
+    object_entry.place(relx=x_start, rely=0.3)
+
+    # Place sentence section
+    sentence_label.place(relx=x_start, rely=0.35)
+    sentence_entry.place(relx=x_start, rely=0.4)
+
+    # Place relation section
+    relation_label.place(relx=x_start, rely=0.64)
+    relation_text.place(relx=x_start, rely=0.69)
     def insert_s():
         test_main = e.get()
         test_obj = e2.get()
@@ -1157,8 +1173,6 @@ def relation_rely():
         pos2 = Variable(pos2)
         y = model_r(sentence, pos1, pos2)
         y = np.argmax(y.data.numpy(), axis=1)
-        t2.delete("1.0", "end")
-        t2.insert("insert", id2relation[y[0]]+'\n')
     def insert_end():
         var = e.get()
         e.delete(0,END)
@@ -1167,10 +1181,10 @@ def relation_rely():
 
     b2 = tkinter.Button(window, text="重新输入", width=15, height=2,font='华文新魏',command = insert_end)
     b2.pack()
-    b2.place(relx=0.45, rely=0.4)
+    b2.place(relx=0.45, rely=0.5)
     b = tkinter.Button(window, text="判断关系", width=15, height=2, font='华文新魏',command = insert_s)
     b.pack()
-    b.place(relx=0.25, rely=0.4)
+    b.place(relx=0.25, rely=0.5)
 
 def search():
     tianchong()
@@ -1178,8 +1192,8 @@ def search():
     e = tkinter.Entry(window, width=35)
     e.pack()
     k.pack()
-    k.place(relx=0.25, rely=0.05)
-    e.place(relx=0.25, rely=0.1)
+    k.place(relx=0.25, rely=0.15)
+    e.place(relx=0.25, rely=0.2)
     def insert_s_w():
         global data
         main_dat = e.get()
@@ -1211,7 +1225,7 @@ def search():
 
     b = tkinter.Button(window, text="搜索", width=15, height=2, font='华文新魏',command= insert_s_w)
     b.pack()
-    b.place(relx=0.25, rely=0.15)
+    b.place(relx=0.25, rely=0.25)
 
 
 def connect():
@@ -1368,8 +1382,8 @@ def quick():
     e1 = tkinter.Entry(window, width=55)
     e1.pack()
     k1.pack()
-    e1.place(relx=0.35, rely=0.1)
-    k1.place(relx=0.35, rely=0.05)
+    e1.place(relx=0.35, rely=0.2)
+    k1.place(relx=0.35, rely=0.25)
 
     def insert_end():
         totle_relation = []
