@@ -7,6 +7,10 @@ import math
 import os
 import random
 import sys
+import tkinter as tk
+import numpy as np
+from matplotlib import cm
+from math import sqrt, pi
 import threading
 import time
 from collections import deque
@@ -327,7 +331,7 @@ def tianjia():
             json_file.write(js)
     b = tkinter.Button(window, text="添加关系", width=15, height=2,font='华文新魏',command=insert_related)
     b.pack()
-    b.place(relx=0.45, rely=0.4)
+    b.place(relx=0.45, rely=0.5)
 
 y_index = 0
 num_nums = 0
@@ -349,11 +353,6 @@ def mulu():
             relation_data: Dictionary of relationship data
             selected_node: The selected central node
         """
-        import tkinter as tk
-        from tkinter import ttk
-        import numpy as np
-        from matplotlib import cm
-        from math import sqrt, pi
 
         # Clear previous content
         for widget in window.winfo_children():
