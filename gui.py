@@ -45,7 +45,7 @@ import part.bertBILSTM as bertBILSTM
 
 
 window = ttk.Window()
-style = ttk.Style(theme='minty')
+style = ttk.Style(theme='flatly')
 theme_names = style.theme_names()
 
 style.configure('my.TButton', font=('华文新魏', 10))
@@ -821,7 +821,7 @@ def mulu():
         #                               bd=0)
         #     button_t.place(relx=0.1 + num_index, rely=0.25 + y_num_index, anchor='ne')
 
-    msg1 = Message(window, text='目录   ', font=('华文新魏',20), bd=0, bg='red', width=90)
+    msg1 = Message(window, text='目录   ', font=('华文新魏', 20), bd=0, bg='red', width=90)
     msg1.place(relx=0.15, rely=0.1)
     num_index = 0
     y_num_index = 0
@@ -837,15 +837,40 @@ def mulu():
             break
         num_nums += 1
         button_t = ttk.Button(window, text=data_s, bootstyle="success-link", width=10,
-                                  command=lambda num_dd = num_index_dd:moveit(list(data.keys())[num_dd]))
+                              command=lambda num_dd=num_index_dd: moveit(list(data.keys())[num_dd]))
         button_t.place(relx=0.1 + num_index, rely=0.25 + y_num_index, anchor='ne')
 
-    button_t = tkinter.Button(window, text="上一页", font=('华文新魏', 15), fg='blue', width=10, height=1,
-                              command=the_before)
-    button_t.place(relx=0.42, rely=0.9, anchor='ne')
-    button_t = tkinter.Button(window, text="下一页", font=('华文新魏', 15), fg='blue', width=10, height=1,
-                              command=the_next)
-    button_t.place(relx=0.62, rely=0.9, anchor='ne')
+    # Add page indicator directly in window
+    page_indicator = ttk.Label(
+        window,
+        text=f"第 {num_nums + 1} 页",
+        bootstyle="secondary",
+        font=('华文新魏', 12)
+    )
+    page_indicator.place(relx=0.5, rely=0.95, anchor="center")
+
+    # Add navigation buttons with better styling
+    prev_btn = ttk.Button(
+        window,
+        text="上一页",
+        bootstyle="info-outline",
+        width=12,
+        command=the_before
+    )
+    prev_btn.place(relx=0.35, rely=0.95, anchor="center")
+
+    next_btn = ttk.Button(
+        window,
+        text="下一页",
+        bootstyle="info-outline",
+        width=12,
+        command=the_next
+    )
+    next_btn.place(relx=0.65, rely=0.95, anchor="center")
+
+    # Add keyboard navigation
+    window.bind("<Left>", lambda event: the_before())
+    window.bind("<Right>", lambda event: the_next())
 
 def tianjia_d():
     global data_load
@@ -1140,9 +1165,9 @@ def relation_rely():
     relation_label.place(relx=x_start, rely=0.64)
     relation_text.place(relx=x_start, rely=0.69)
     def insert_s():
-        test_main = e.get()
-        test_obj = e2.get()
-        test_relat = e1.get()
+        test_main = entries[0].get()
+        test_obj = entries[1].get()
+        test_relat = entries[2].get()
         ss = test_main
         position1 = []
         position2 = []
@@ -1173,10 +1198,10 @@ def relation_rely():
         y = model_r(sentence, pos1, pos2)
         y = np.argmax(y.data.numpy(), axis=1)
     def insert_end():
-        var = e.get()
-        e.delete(0,END)
-        e1.delete(0,END)
-        e2.delete(0,END)
+        var = entries[0].get()
+        entries[0].delete(0,END)
+        entries[1].delete(0,END)
+        entries[2].delete(0,END)
 
     b2 = tkinter.Button(window, text="重新输入", width=15, height=2,font='华文新魏',command = insert_end)
     b2.pack()
@@ -1719,40 +1744,53 @@ def begin():
     # 初始化默认视图
     mulu()
 
-# 其他功能函数保持原样...
-window.title('登录界面')
-window.geometry('600x600')
-bg = Label(window, text='登录界面', font=('华文新魏',45))
-k = Label(window, text='输入', font='华文新魏')
-k1 = Label(window, text='输入', font='华文新魏')
-k2 = Label(window, text='输入', font='华文新魏')
-k3 = Label(window, text='输入', font='华文新魏')
-k4 = Label(window, text='输入', font='华文新魏')
-e = tkinter.Entry(window, width=35)
-e1 = tkinter.Entry(window, width=35)
-e2 = tkinter.Entry(window, width=35)
-e3 = tkinter.Entry(window, width=35)
-e4 = tkinter.Entry(window, width=35)
-e.pack()
-k.pack()
-bg.place(relx=0.25,rely=0.05)
-k1.place(relx=0.25, rely=0.2)
-k2.place(relx=0.25, rely=0.3)
-k.place(relx=0.25, rely=0.4)
-k3.place(relx=0.25, rely=0.5)
-k4.place(relx=0.25, rely=0.6)
-e.place(relx=0.25, rely=0.45)
-e1.place(relx=0.25, rely=0.25)
-e2.place(relx=0.25, rely=0.35)
-e3.place(relx=0.25, rely=0.55)
-e4.place(relx=0.25, rely=0.65)
 
-b = tkinter.Button(window, text="开始",font='华文新魏', width=15, height=2,command=begin)
-b.pack()
-b.place(relx=0.20, rely=0.75)
-b1 = tkinter.Button(window, text="退出",font='华文新魏', width=15, height=2,command=begin)
-b1.pack()
-b1.place(relx=0.55, rely=0.75)
+# Import necessary modules
+import ttkbootstrap as ttk
+from ttkbootstrap.constants import *
 
+# Configure the main window
+window.geometry('600x500')
+
+# Define labels and inputs with better descriptions
+field_labels = ['用户名', '密码', '电子邮件', '手机号码', '验证码']
+entries = []
+
+# Create form fields with proper spacing and alignment
+for i, label_text in enumerate(field_labels):
+    # Create label with better styling
+    label = ttk.Label(window, text=label_text, font=('华文新魏', 12), bootstyle="secondary")
+    label.place(relx=0.15, rely=0.25 + i * 0.08)
+
+    # Create entry with better styling
+    if label_text == '密码':
+        entry = ttk.Entry(window, bootstyle="primary", width=35, show="*")
+    else:
+        entry = ttk.Entry(window, bootstyle="primary", width=35)
+    entry.place(relx=0.35, rely=0.25 + i * 0.08)
+    entries.append(entry)
+
+# Styled buttons with better positioning
+login_button = ttk.Button(
+    window,
+    text="登录",
+    bootstyle="success",
+    width=15,
+    command=begin
+)
+login_button.place(relx=0.25, rely=0.75)
+
+exit_button = ttk.Button(
+    window,
+    text="退出",
+    bootstyle="danger",
+    width=15,
+    command=window.destroy  # Changed to properly close the window
+)
+exit_button.place(relx=0.55, rely=0.75)
+
+# Optional: Add a decorative element
+separator = ttk.Separator(window, bootstyle="primary")
+separator.place(relx=0.2, rely=0.7, relwidth=0.6)
 
 window.mainloop()
