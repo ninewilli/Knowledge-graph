@@ -11,6 +11,8 @@ Knowledge graph
 
 通过运行gui.py可以直接运行该项目
 
+
+
 This project is a knowledge graph client written through tkinter and its optimization library ttkbootstrap
 
 You can add the web side to achieve data interworking, which is the part of the client, which can be packaged as computer software to run
